@@ -11,6 +11,13 @@ const app = express()
 // init middleware
 if (process.env.NODE_ENV !== 'production') {
   app.use(cors())
+} else {
+  app.use(
+    cors({
+      origin: process.env.APP_URL,
+      credentials: true
+    })
+  )
 }
 
 app.use(morgan('dev'))
